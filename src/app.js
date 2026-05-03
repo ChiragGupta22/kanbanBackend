@@ -13,12 +13,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "https://kanban-frontend-s.vercel.app",
-    credentials: true,
-  }),
-);
 
 // routes
 app.use("/api/user", userRoutes);
