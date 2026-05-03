@@ -10,7 +10,8 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://kanban-frontend-s.vercel.app",
+    origin: ["http://localhost:5173", "https://kanban-frontend-s.vercel.app"],
+    methods: ["GET", "POST"],
     credentials: true,
   },
 });
