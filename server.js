@@ -4,7 +4,7 @@ import app from "./src/app.js";
 
 config();
 
-server.listen(5000, async () => {
+app.listen(5000, async () => {
   await connectDB();
   console.log("Server running on port 5000");
 });
