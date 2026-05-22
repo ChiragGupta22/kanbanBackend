@@ -66,11 +66,20 @@ const getIssue = async (req, res) => {
 const getMyIssues = async (req, res) => {
   try {
     const userId = req.user.id;
+    const { search } = req.query;
 
     const issues = await prisma.issue.findMany({
       where: {
         assigneeId: userId,
+
+        ...(search && {
+          title: {
+            contains: search,
+            mode: "insensitive",
+          },
+        }),
       },
+
       include: {
         project: true,
         assignee: true,
@@ -85,6 +94,7 @@ const getMyIssues = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 const getIssueById = async (req, res) => {
   try {
     const { id } = req.params;
